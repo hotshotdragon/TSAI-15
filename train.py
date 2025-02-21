@@ -27,14 +27,14 @@ logging.info("Script Started")
 # -----------------------------------------------------------------------------
 @dataclass
 class SmolLM2Config:
-    hidden_size: int = 768             # Reduced from 768
-    intermediate_size: int = 1536       # Typically 2x hidden_size
-    num_hidden_layers: int = 30         # Reduced from 30
-    num_attention_heads: int = 12       # Must evenly divide hidden_size (256/8=32)
-    num_key_value_heads: int = 3       # Can remain, if used in your design
+    hidden_size: int = 768             
+    intermediate_size: int = 1536       
+    num_hidden_layers: int = 30         
+    num_attention_heads: int = 8       
+    num_key_value_heads: int = 3       
     hidden_act: str = "silu"
-    max_position_embeddings: int = 2048 # Reduced from 2048
-    initializer_range: float = 0.02    # You may adjust this
+    max_position_embeddings: int = 2048 
+    initializer_range: float = 0.02    
     rms_norm_eps: float = 1e-5
     vocab_size: int = 50257
     rope_theta: float = 10000.0
