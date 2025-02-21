@@ -18,7 +18,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('training-v1.log', encoding='utf-8'),
+        logging.FileHandler('training-v3.log', encoding='utf-8'),
         logging.StreamHandler(sys.stdout)
     ]
 )
@@ -45,7 +45,7 @@ class SmolLM2Config:
     tie_word_embeddings: bool = True
     use_cache: bool = True
     compression_ratio: int = 8
-    num_experts: int = 4               # Reduced from 8
+    num_experts: int = 8               # Reduced from 8
     num_shared_experts: int = 1
     top_k: int = 2
 
@@ -514,7 +514,7 @@ def get_lr(it):
     coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio))  # Cosine schedule
     return min_lr + coeff * (max_lr - min_lr)
 
-train_loader = DataLoaderLite(B=1, T=768)
+train_loader = DataLoaderLite(B=4, T=768)
 
 optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, betas=(0.9, 0.95), eps=1e-8)
 for step in range(max_steps + 1):
